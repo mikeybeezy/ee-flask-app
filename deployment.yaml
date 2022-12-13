@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ee-hello-world-v5
+  labels:
+    app: hello-world-app-v5
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-world-app-v5
+  template:
+    metadata:
+      labels:
+        app: hello-world-app-v5
+    spec:
+      containers:
+      - name: hello-world
+        image: ee-hello-world
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+
