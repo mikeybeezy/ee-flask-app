@@ -55,7 +55,7 @@ pipeline {
     //     }
     //   }
     // }
-    stage('Print Build Number') {
+    stage('delete Image') {
       steps {
         sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
         sh "docker rmi ${IMAGE_NAME}:latest"
