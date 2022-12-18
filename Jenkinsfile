@@ -14,11 +14,11 @@ pipeline {
 
   stages {
 
-    stage('Print Build Number') {
-      steps {
-        sh "${BUILD_NUMBER}"
-      }
-    }
+    // stage('Print Build Number') {
+    //   steps {
+    //     sh "${BUILD_NUMBER}"
+    //   }
+    // }
 
     stage('Checkout Source') {
       steps {
