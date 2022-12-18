@@ -7,7 +7,7 @@ pipeline {
     APP_NAME = ""
     IMAGE_TAG = "${BUILD_NUMBER}"
     IMAGE_NAME = "${DOCKERHUB_USERNAME}" + "/" + "${APP_NAME}"
-    REGISTRY_CREDS = docker_hub
+    REGISTRY_CREDS = "docker_hub"
   }
 
   agent any
@@ -55,6 +55,13 @@ pipeline {
     //     }
     //   }
     // }
+    stage('Print Build Number') {
+      steps {
+        sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+        sh "docker rmi ${IMAGE_NAME}:latest"
+      }
+    }
+
 
   }
 
