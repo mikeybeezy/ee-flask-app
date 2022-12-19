@@ -60,6 +60,7 @@ pipeline {
       steps {
         sh "docker rmi ${reg}/${dockerimagename}:${BUILD_NUMBER}"
         sh "docker rmi ${dockerimagename}:latest"
+        sh "docker rmi ${reg}/${dockerimagename}"
       }
     }
 
