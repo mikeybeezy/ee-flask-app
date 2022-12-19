@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerimagename = "mikeybabs/flask-ee:v1.1"
+    dockerimagename = "mikeybabs/flask-ee"
     dockerImage = ""
     DOCKERHUB_USERNAME = ""
     APP_NAME = ""
@@ -29,7 +29,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          dockerImage = docker.build "${IMAGE_NAME}"
+          dockerImage = docker.build dockerimagename
         }
       }
     }
@@ -41,7 +41,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("latest")
+            dockerImage.push("${BUILD_NUMBER}")
           }
         }
       }
@@ -54,12 +54,12 @@ pipeline {
     //     }
     //   }
     // }
-    stage('delete Image') {
-      steps {
-        sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-        sh "docker rmi ${IMAGE_NAME}:latest"
-      }
-    }
+    // stage('delete Image') {
+    //   steps {
+    //     sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+    //     sh "docker rmi ${IMAGE_NAME}:latest"
+    //   }
+    // }
 
 
   }
