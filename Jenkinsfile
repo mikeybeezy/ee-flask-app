@@ -2,6 +2,7 @@ pipeline {
 
   environment {
     dockerimagename = "mikeybabs/flask-ee"
+    reg = "registry.hub.docker.com"
     dockerImage = ""
     DOCKERHUB_USERNAME = ""
     APP_NAME = ""
@@ -57,7 +58,7 @@ pipeline {
     // }
     stage('delete Image') {
       steps {
-        sh "docker rmi ${dockerimagename}:${BUILD_NUMBER}"
+        sh "docker rmi ${reg}/${dockerimagename}:${BUILD_NUMBER}"
         sh "docker rmi ${dockerimagename}:latest"
       }
     }
