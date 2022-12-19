@@ -48,11 +48,18 @@ pipeline {
         }
       }
     }
+    // stage('check connectionto k8 App to Kubernetes') {
+    //   steps {
+    //     script {
+    //       kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kind_kubernetes_config")
+    //     }
+    //   }
+    // }
 
     stage('Deploying App to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "kind_kubernetes_config")
+          kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kind_kubernetes_config")
         }
       }
     }
