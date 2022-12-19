@@ -42,6 +42,7 @@ pipeline {
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
             dockerImage.push("${BUILD_NUMBER}")
+            dockerImage.push("latest")
           }
         }
       }
@@ -54,12 +55,12 @@ pipeline {
     //     }
     //   }
     // }
-    // stage('delete Image') {
-    //   steps {
-    //     sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-    //     sh "docker rmi ${IMAGE_NAME}:latest"
-    //   }
-    // }
+    stage('delete Image') {
+      steps {
+        sh "docker rmi ${dockerimagename}:${BUILD_NUMBER}"
+        sh "docker rmi ${dockerimagename}:latest"
+      }
+    }
 
 
   }
