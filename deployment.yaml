@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: flask-ee
+        image: mikeybabs/flask-ee:latest
         imagePullPolicy: Never
         ports:
         - containerPort: 5000
@@ -30,7 +30,7 @@ spec:
     app: hello-world-app-v5
   ports:
     - protocol: TCP
-      port: 8080
+      port: 8081
       targetPort: 5000
   type: NodePort
 
